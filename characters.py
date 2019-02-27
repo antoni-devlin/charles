@@ -40,17 +40,18 @@ What would you like to do?
 
 ''')
 
-loop = True
 
+running = True
 
-def damage():
-    while loop == True:
+def main():
+    while True:
         if choice == "1":
             print("You swing at " + aragog.name + ", a " + aragog.race + ". He's " + aragog.alignment + "!")
             damage = random.sample(range(1, 40), 1)
             print(damage[0])
             aragog.health += -damage[0]
             print(aragog.health)
+            break
         elif choice == "2":
             pass
         else:
@@ -62,4 +63,4 @@ def damage():
             ''')
             sys.exit()
 
-damage()
+main()
