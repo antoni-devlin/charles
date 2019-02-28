@@ -23,44 +23,33 @@ class Monster(Npc):
         self.isalive = True
 
 
-player = Player()
-print("Player name: "+ player.name)
-print(" ")
-
 aragog = Monster("Aragog", "Giant Spider", 150, "Neutral")
 
 billy = Monster("Billy", "Zombie", 100, "Good")
 
-choice = input('''
+enemies = [aragog, billy]
 
-What would you like to do?
+print("You encounter two enemies.")
+print("")
+for enemy in enemies:
+    print("{name}, a {race} with {health} health.".format(name=enemy.name, race=enemy.race, health=enemy.health))
+print("")
 
-1) Attack the zombie.
-2) Attack the giant spider?
+choice = input("Who would you like to attack? ")
 
-''')
+choice = choice.lower()
 
 
-running = True
 
-def main():
-    while True:
-        if choice == "1":
-            print("You swing at " + aragog.name + ", a " + aragog.race + ". He's " + aragog.alignment + "!")
-            damage = random.sample(range(1, 40), 1)
-            print(damage[0])
-            aragog.health += -damage[0]
-            print(aragog.health)
-            break
-        elif choice == "2":
-            pass
-        else:
-            print('''You missed, and now you're dead!
-            
-            
-            Quitting...
-            
-            ''')
-            sys.exit()
+if choice == aragog.name.lower():
+    print("")
+    print("Spider!")
+    EnemyHealth = aragog.health
+    print(EnemyHealth)
 
-main()
+elif choice == billy.name.lower():
+    print("")
+    print("Zombie!")
+else:
+    print("")
+    print("Unknown!")
