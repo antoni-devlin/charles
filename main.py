@@ -1,6 +1,41 @@
-exitcommands = ['exit', 'quit', 'q']
+exitcommands = [
+    'exit',
+    'quit',
+    'q',
+]
 
-def startingRoom():
+class Player:
+    def __init__(self, name, room_name):
+        self.name = name
+        self.room = world[room_name]
+
+    def move(self, direction):
+        if direction not in self.room.exits:
+            print("Cannot move in that direction!")
+            return
+        new_room_name = self.room.exits['room']
+        print('Moving to', new_room_name)
+        self.room = world[new_room_name]
+
+
+class Room:
+    def __init__(self, name, description, links):
+        self.name = name
+        self.description = description
+        self.links = links
+
+world = {}
+world['starting_room'] = Room('starting_room', 'You are in a small bedroom', {'E', 'hallway'})
+world['hallway'] = Room('hallway', 'You are in a hallway', {'W', 'starting_room'})
+
+
+
+
+
+
+
+
+def startingroom():
     print('''
     Charles woke up in a room, not knowing where he was, when he was, or really, WHO he was.
          
@@ -70,8 +105,3 @@ def selectchoice(selectionlist):
             exit(0)
         else:
             print("Unknown Choice")
-
-
-
-
-startingRoom()
